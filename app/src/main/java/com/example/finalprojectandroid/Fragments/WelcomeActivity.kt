@@ -1,34 +1,32 @@
 package com.example.finalprojectandroid.Fragments
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.finalprojectandroid.databinding.FragmentWelcomeBackBinding
+import com.example.finalprojectandroid.databinding.ActivityWelcomeBinding
 
 class WelcomeActivity : AppCompatActivity() {
-    private lateinit var binding: FragmentWelcomeBackBinding
+    private lateinit var binding: ActivityWelcomeBinding
+    private lateinit var prefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentWelcomeBackBinding.inflate(layoutInflater)
+        binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
 
-        // Get saved name
-        val prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
-        val userName = prefs.getString("user_name", "User")
+        val userName = prefs.getString("USER_NAME", "User") ?: "User"
+        binding.tvWelcome.text = "Welcome back, $userName!"
 
-        // Set welcome message
-        binding.tvWelcome.text = "Welcome, $userName!"
+        binding.btnContinue.setOnClickListener {
+            startActivity(Intent(this, LessonsListActivity::class.java))
+        }
 
-//        binding.btnContinue.setOnClickListener {
-//            // Start LessonsListActivity
-//            startActivity(Intent(this, ::class.java))
-//        }
-
-//        binding.btnReset.setOnClickListener {
-//            // Clear preferences and go back to EnterNameActivity
-//            prefs.edit().clear().apply()
-//            startActivity(Intent(this, EnterNameActivity::class.java))
-//            finish()
-//        }
+        binding.btnReset.setOnClickListener {
+            prefs.edit().clear().apply()
+            startActivity(Intent(this, EnterNameActivity::class.java))
+            finish()
+        }
     }
 }

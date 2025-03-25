@@ -20,11 +20,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Enter Name Screen -->
+        <activity
+            android:name="com.example.finalprojectandroid.Fragments.EnterNameActivity"
+            android:exported="false"
+           />
+
+        <!-- Welcome Back Screen -->
         <activity
             android:name="com.example.finalprojectandroid.Fragments.WelcomeActivity"
             android:exported="false"
-            />
+      />
 
+        <!-- Lessons List Screen -->
+        <activity
+            android:name="com.example.finalprojectandroid.Fragments.LessonsListActivity"
+            android:exported="false"
+         />
+
+        <!-- Lesson Details Screen -->
+        <activity
+            android:name="com.example.finalprojectandroid.Fragments.LessonDetailActivity"
+            android:exported="false"
+            android:parentActivityName="com.example.finalprojectandroid.Fragments.LessonsListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.finalprojectandroid.Fragments.LessonsListActivity" />
+        </activity>
 
     </application>
 

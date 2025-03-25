@@ -27,8 +27,8 @@ class LessonsAdapter(
         holder.binding.apply {
             tvLessonNumber.text = "Lesson ${lesson.id}"
             tvLessonTitle.text = lesson.title
-            tvLessonDuration.text = lesson.duration
-            tvCompletedStatus.text = if (completedLessons[position]) "✓ Completed" else "Incomplete"
+            tvDuration.text = lesson.duration
+            tvStatus.text = if (completedLessons[position]) "✓ Completed" else "Incomplete"
             root.setOnClickListener { onClick(lesson) }
         }
     }

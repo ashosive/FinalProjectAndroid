@@ -4,27 +4,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/screen1HeadingText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter Your Name"
-        android:textSize="24sp"
-        android:layout_gravity="center_horizontal"/>
-
     <EditText
-        android:id="@+id/UserNameTextBox"
+        android:id="@+id/Screen1UserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="Your name"/>
+        android:hint="Enter your name"/>
 
     <Button
-        android:id="@+id/nextBtn"
+        android:id="@+id/btnContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="CONTINUE"/>
-
 </LinearLayout>
