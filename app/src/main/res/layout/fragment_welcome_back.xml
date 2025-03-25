@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/screen2SubText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have completed 25%"
+        android:textSize="24sp"/>
+    <TextView
+        android:id="@+id/screen2Stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="completed lessons: 1,pending:2"
+        android:textSize="24sp"/>
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Continue to Lessons"/>
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Reset App"/>
+</LinearLayout>
