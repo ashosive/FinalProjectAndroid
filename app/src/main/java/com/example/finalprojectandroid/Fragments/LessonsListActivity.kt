@@ -1,19 +1,18 @@
 package com.example.finalprojectandroid.Fragments
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finalprojectandroid.Adapter.LessonAdapter
 import com.example.finalprojectandroid.Datamodel.Lesson
+import com.example.finalprojectandroid.LessonsAdapter
 import com.example.finalprojectandroid.databinding.ActivityLessonsListBinding
 
 class LessonsListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLessonsListBinding
     private lateinit var prefs: SharedPreferences
+    private lateinit var adapter: LessonsAdapter
     private val lessons = listOf(
         Lesson(1, "Introduction", "10:30", "Basic concepts", "https://youtu.be/BBWyXo-3JGQ"),
         Lesson(2, "UI Basics", "15:45", "Layouts and Views", "https://youtu.be/fis26HvvDII"),
@@ -28,14 +27,33 @@ class LessonsListActivity : AppCompatActivity() {
         setContentView(binding.root)
         prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
 
-        val completedLessons = prefs.getStringSet("COMPLETED_LESSONS", mutableSetOf()) ?: mutableSetOf()
+        // Initialize with completed lessons (convert from SharedPreferences format)
+        val completedLessons = getCompletedLessonsFromPrefs()
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = LessonAdapter(lessons, completedLessons) { lesson ->
+        adapter = LessonsAdapter(lessons, completedLessons) { lesson ->
             val intent = Intent(this, LessonDetailActivity::class.java).apply {
                 putExtra("LESSON", lesson)
             }
             startActivity(intent)
+        }
+
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@LessonsListActivity)
+            adapter = this@LessonsListActivity.adapter
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Refresh when returning from detail activity
+        val updatedCompletedLessons = getCompletedLessonsFromPrefs()
+        adapter.updateCompletedLessons(updatedCompletedLessons)
+    }
+
+    private fun getCompletedLessonsFromPrefs(): List<Boolean> {
+        val completedIds = prefs.getStringSet("COMPLETED_LESSONS", mutableSetOf()) ?: mutableSetOf()
+        return lessons.map { lesson ->
+            completedIds.contains(lesson.id.toString())
         }
     }
 }

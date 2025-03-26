@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,25 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Enter Name Screen -->
         <activity
             android:name="com.example.finalprojectandroid.Fragments.EnterNameActivity"
             android:exported="false"
            />
-
-        <!-- Welcome Back Screen -->
         <activity
             android:name="com.example.finalprojectandroid.Fragments.WelcomeActivity"
             android:exported="false"
       />
-
-        <!-- Lessons List Screen -->
         <activity
             android:name="com.example.finalprojectandroid.Fragments.LessonsListActivity"
             android:exported="false"
          />
-
-        <!-- Lesson Details Screen -->
         <activity
             android:name="com.example.finalprojectandroid.Fragments.LessonDetailActivity"
             android:exported="false"
@@ -47,7 +39,5 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.finalprojectandroid.Fragments.LessonsListActivity" />
         </activity>
-
     </application>
-
 </manifest>
