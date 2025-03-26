@@ -1,6 +1,7 @@
+package com.example.finalprojectandroid
+
 import android.content.Context
 import android.content.SharedPreferences
-import android.system.Os.remove
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -29,7 +30,7 @@ class PrefsHelper(context: Context) {
     }
 
     // Progress management
-    fun getCompletedLessons(): List<Boolean> {
+    private fun getCompletedLessons(): List<Boolean> {
         val json = sharedPref.getString(KEY_COMPLETED_LESSONS, null)
         return json?.let {
             try {
@@ -40,13 +41,15 @@ class PrefsHelper(context: Context) {
         } ?: List(TOTAL_LESSONS) { false }
     }
 
-    fun setCompletedLessons(completed: List<Boolean>) {
+    private fun setCompletedLessons(completed: List<Boolean>) {
         if (completed.size == TOTAL_LESSONS) {
             sharedPref.edit().putString(KEY_COMPLETED_LESSONS, gson.toJson(completed)).apply()
         }
     }
 
     fun getCompletedCount(): Int = getCompletedLessons().count { it }
+
+
     fun getPendingCount(): Int = TOTAL_LESSONS - getCompletedCount()
     fun getCompletionPercentage(): Int = (getCompletedCount() * 100 / TOTAL_LESSONS)
 
