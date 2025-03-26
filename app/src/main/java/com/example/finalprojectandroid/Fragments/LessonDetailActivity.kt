@@ -46,4 +46,6 @@ class LessonDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
