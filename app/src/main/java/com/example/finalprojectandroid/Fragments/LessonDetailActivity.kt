@@ -24,9 +24,9 @@ class LessonDetailActivity : AppCompatActivity() {
         currentLesson = intent.getSerializableExtra("LESSON") as Lesson
 
         binding.apply {
-            tvTitle.text = "Lesson ${currentLesson.id}: ${currentLesson.title}"
-            tvDuration.text = "Duration: ${currentLesson.duration}"
-            tvDescription.text = currentLesson.description
+            Title.text = "Lesson ${currentLesson.id}: ${currentLesson.title}"
+            Duration.text = "Duration: ${currentLesson.duration}"
+            Description.text = currentLesson.description
 
             btnWatch.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(currentLesson.videoUrl)))

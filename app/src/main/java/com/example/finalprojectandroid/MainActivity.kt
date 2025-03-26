@@ -1,11 +1,11 @@
 package com.example.finalprojectandroid
 
 import com.example.finalprojectandroid.Fragments.EnterNameActivity
+import com.example.finalprojectandroid.Fragments.WelcomeActivity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.finalprojectandroid.Fragments.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences

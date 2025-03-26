@@ -22,10 +22,10 @@ class LessonsAdapter(
 
         fun bind(lesson: Lesson, isCompleted: Boolean) {
             binding.apply {
-                tvLessonNumber.text = "Lesson ${lesson.id}"
-                tvLessonTitle.text = lesson.title
-                tvDuration.text = lesson.duration
-                tvStatus.text = if (isCompleted) "✓ Completed" else "Incomplete"
+                lessonNumber.text = "Lesson ${lesson.id}"
+                lessonTitle.text = lesson.title
+                duration.text = lesson.duration
+                lessonStatus.text = if (isCompleted) "✓ Completed" else "Incomplete"
                 root.setOnClickListener { onClick(lesson) }
             }
         }

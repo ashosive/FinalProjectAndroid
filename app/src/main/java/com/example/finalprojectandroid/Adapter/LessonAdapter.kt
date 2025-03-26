@@ -22,13 +22,12 @@ class LessonAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val lesson = lessons[position]
         holder.binding.apply {
-            tvLessonNumber.text = "Lesson ${lesson.id}"
-            tvLessonTitle.text = lesson.title
-            tvDuration.text = lesson.duration
-            tvStatus.text = if (completedLessons.contains(lesson.id.toString())) "✓ Completed" else "Pending"
+            lessonNumber.text = "Lesson ${lesson.id}"
+            lessonTitle.text = lesson.title
+            duration.text = lesson.duration
+            lessonStatus.text = if (completedLessons.contains(lesson.id.toString())) "✓ Completed" else "Pending"
             root.setOnClickListener { onClick(lesson) }
         }
     }
-
     override fun getItemCount() = lessons.size
 }
