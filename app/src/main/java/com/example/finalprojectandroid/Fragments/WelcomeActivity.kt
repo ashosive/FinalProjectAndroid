@@ -51,7 +51,11 @@ class WelcomeActivity : AppCompatActivity() {
         val pending = PrefsHelper.TOTAL_LESSONS - completedIds.size
         val percentage = (completedIds.size * 100) / PrefsHelper.TOTAL_LESSONS
 
-       binding.progressStats.text = "Completed: ${completedIds.size}, Pending: $pending ($percentage%)"
+       binding.progressStats.text ="""
+            Your Progress:
+            ✅ ${completedIds.size} of ${PrefsHelper.TOTAL_LESSONS} lessons completed
+            📊 $percentage% course finished
+        """.trimIndent()
     }
 
 }
