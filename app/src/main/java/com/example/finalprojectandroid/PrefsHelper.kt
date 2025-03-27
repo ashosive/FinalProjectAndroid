@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import androidx.core.content.edit
 
 class PrefsHelper(context: Context) {
     private val sharedPref: SharedPreferences =
@@ -16,20 +17,6 @@ class PrefsHelper(context: Context) {
         const val KEY_COMPLETED_LESSONS = "completed_lessons"
         const val TOTAL_LESSONS = 5
     }
-
-    // User management
-    fun isFirstTime(): Boolean = sharedPref.getBoolean(KEY_FIRST_TIME, true)
-    fun setFirstTime(value: Boolean) = sharedPref.edit().putBoolean(KEY_FIRST_TIME, value).apply()
-    fun getUserName(): String? = sharedPref.getString(KEY_USER_NAME, null)
-    fun setUserName(name: String) {
-        sharedPref.edit().putString(KEY_USER_NAME, name).apply()
-        // Initialize empty progress for new users
-        if (getCompletedLessons().all { !it }) {
-            setCompletedLessons(List(TOTAL_LESSONS) { false })
-        }
-    }
-
-    // Progress management
     private fun getCompletedLessons(): List<Boolean> {
         val json = sharedPref.getString(KEY_COMPLETED_LESSONS, null)
         return json?.let {
@@ -43,7 +30,7 @@ class PrefsHelper(context: Context) {
 
     private fun setCompletedLessons(completed: List<Boolean>) {
         if (completed.size == TOTAL_LESSONS) {
-            sharedPref.edit().putString(KEY_COMPLETED_LESSONS, gson.toJson(completed)).apply()
+            sharedPref.edit() { putString(KEY_COMPLETED_LESSONS, gson.toJson(completed)) }
         }
     }
 

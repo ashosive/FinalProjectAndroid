@@ -1,5 +1,6 @@
 package com.example.finalprojectandroid.Fragments
 
+import android.annotation.SuppressLint
 import com.example.finalprojectandroid.PrefsHelper
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,6 +9,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalprojectandroid.PrefsHelper.Companion.KEY_COMPLETED_LESSONS
 import com.example.finalprojectandroid.databinding.ActivityWelcomeBinding
+import androidx.core.content.edit
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
@@ -27,12 +29,13 @@ class WelcomeActivity : AppCompatActivity() {
         updateProgressStats()
     }
     
+    @SuppressLint("SetTextI18n", "SuspiciousIndentation")
     private fun setupUI() {
         val userName = prefs.getString("USER_NAME", "User") ?: "User"
         binding.welcomeText.text = "Welcome back\n $userName🔥"
 
         updateProgressStats()
-        val json = prefs.getString(KEY_COMPLETED_LESSONS, null)
+        val json: String? = prefs.getString(KEY_COMPLETED_LESSONS, null)
             Log.d("***", "JSON: $json")
 
         binding.btnContinue.setOnClickListener {
@@ -40,15 +43,15 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         binding.btnReset.setOnClickListener {
-            prefs.edit().clear().apply()
+            prefs.edit() { clear() }
             startActivity(Intent(this, EnterNameActivity::class.java))
             finish()
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateProgressStats() {
         val completedIds = prefs.getStringSet("COMPLETED_LESSONS", mutableSetOf()) ?: mutableSetOf()
-        val pending = PrefsHelper.TOTAL_LESSONS - completedIds.size
         val percentage = (completedIds.size * 100) / PrefsHelper.TOTAL_LESSONS
 
        binding.progressStats.text ="""

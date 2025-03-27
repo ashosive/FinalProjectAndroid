@@ -13,6 +13,12 @@ class LessonsListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLessonsListBinding
     private lateinit var prefs: SharedPreferences
     private lateinit var adapter: LessonsAdapter
+
+    companion object {
+        const val KEY_COMPLETED_LESSONS = "COMPLETED_LESSONS"
+        const val KEY_LESSON = "LESSON"
+    }
+
     private val lessons = listOf(
         Lesson(1, "Bitcoin Whitepaper", "15:30",
             "Analyze Satoshi's original paper covering decentralization, proof-of-work, and the double-spending solution through blockchain technology.",
@@ -41,11 +47,9 @@ class LessonsListActivity : AppCompatActivity() {
         setContentView(binding.root)
         prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
 
-        val completedLessons = getCompletedLessonsFromPrefs()
-
-        adapter = LessonsAdapter(lessons, completedLessons) { lesson ->
+        adapter = LessonsAdapter(lessons, getCompletedLessonsFromPrefs()) { lesson ->
             val intent = Intent(this, LessonDetailActivity::class.java).apply {
-                putExtra("LESSON", lesson)
+                putExtra(KEY_LESSON, lesson)
             }
             startActivity(intent)
         }
@@ -58,14 +62,11 @@ class LessonsListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val updatedCompletedLessons = getCompletedLessonsFromPrefs()
-        adapter.updateCompletedLessons(updatedCompletedLessons)
+        adapter.updateCompletedLessons(getCompletedLessonsFromPrefs())
     }
 
     private fun getCompletedLessonsFromPrefs(): List<Boolean> {
-        val completedIds = prefs.getStringSet("COMPLETED_LESSONS", mutableSetOf()) ?: mutableSetOf()
-        return lessons.map { lesson ->
-            completedIds.contains(lesson.id.toString())
-        }
+        val completedIds = prefs.getStringSet(KEY_COMPLETED_LESSONS, emptySet()) ?: emptySet()
+        return lessons.map { it.id.toString() in completedIds }
     }
 }

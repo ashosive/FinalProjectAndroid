@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalprojectandroid.databinding.ActivityEnterNameBinding
+import androidx.core.content.edit
 
 class EnterNameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEnterNameBinding
@@ -18,7 +19,7 @@ class EnterNameActivity : AppCompatActivity() {
         binding.btnContinue.setOnClickListener {
             val name = binding.Screen1UserName.text.toString().trim()
             if (name.isNotEmpty()) {
-                prefs.edit().putString("USER_NAME", name).apply()
+                prefs.edit() { putString("USER_NAME", name) }
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {

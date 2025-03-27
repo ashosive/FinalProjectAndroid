@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
 
-        // Check if user has already entered their name
         val userName = prefs.getString("USER_NAME", null)
         val intent = if (userName.isNullOrEmpty()) {
             Intent(this, EnterNameActivity::class.java)

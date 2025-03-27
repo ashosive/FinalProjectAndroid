@@ -1,4 +1,5 @@
 package com.example.finalprojectandroid
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ class LessonsAdapter(
     private val onClick: (Lesson) -> Unit
 ) : RecyclerView.Adapter<LessonsAdapter.LessonViewHolder>() {
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateCompletedLessons(newCompletedLessons: List<Boolean>) {
         completedLessons = newCompletedLessons
         notifyDataSetChanged()
@@ -19,6 +21,7 @@ class LessonsAdapter(
     inner class LessonViewHolder(val binding: ItemLessonBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(lesson: Lesson, isCompleted: Boolean) {
             binding.apply {
                 lessonNumber.text = "-> Lesson ${lesson.id}"
