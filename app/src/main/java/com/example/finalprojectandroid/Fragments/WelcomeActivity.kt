@@ -29,7 +29,7 @@ class WelcomeActivity : AppCompatActivity() {
     
     private fun setupUI() {
         val userName = prefs.getString("USER_NAME", "User") ?: "User"
-        binding.welcomeText.text = "Welcome back, $userName!"
+        binding.welcomeText.text = "Welcome back\n $userName🔥"
 
         updateProgressStats()
         val json = prefs.getString(KEY_COMPLETED_LESSONS, null)

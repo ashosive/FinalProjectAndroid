@@ -14,11 +14,25 @@ class LessonsListActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private lateinit var adapter: LessonsAdapter
     private val lessons = listOf(
-        Lesson(1, "Introduction", "10:30", "Basic concepts", "https://youtu.be/BBWyXo-3JGQ"),
-        Lesson(2, "UI Basics", "15:45", "Layouts and Views", "https://youtu.be/fis26HvvDII"),
-        Lesson(3, "RecyclerView", "22:10", "Lists in Android", "https://youtu.be/Mc0XT58A1Z4"),
-        Lesson(4, "Data Storage", "18:20", "SharedPreferences", "https://youtu.be/8obgNNlj3Eo"),
-        Lesson(5, "Final Project", "25:00", "Complete App", "https://youtu.be/NZaH4tjwMY4")
+        Lesson(1, "Bitcoin Whitepaper", "15:30",
+            "Analyze Satoshi's original paper covering decentralization, proof-of-work, and the double-spending solution through blockchain technology.",
+            "https://youtu.be/41JCpzvnn_0"),
+
+        Lesson(2, "Wallet Security", "22:15",
+            "Learn public/private key cryptography, HD wallets, and cold storage methods to securely store cryptocurrencies.",
+            "https://youtu.be/AvPdaNb35qY"),
+
+        Lesson(3, "Mining Explained", "19:45",
+            "Understand how mining works including hash rate, difficulty adjustments, and the energy-intensive proof-of-work consensus mechanism.",
+            "https://youtu.be/t4p4iMqmxbQ"),
+
+        Lesson(4, "Altcoins & Tokens", "17:20",
+            "Explore major altcoins (Ethereum, Litecoin), stablecoins, and token standards like ERC-20 that expand blockchain functionality.",
+            "https://youtu.be/1PU72AXQfXY"),
+
+        Lesson(5, "Crypto Trading Basics", "25:50",
+            "Master exchange fundamentals, candlestick patterns, and risk management strategies for cryptocurrency trading.",
+            "https://youtu.be/GmOzih6I1zs")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

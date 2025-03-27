@@ -25,7 +25,7 @@ class LessonDetailActivity : AppCompatActivity() {
 
         binding.apply {
             Title.text = "Lesson ${currentLesson.id}: ${currentLesson.title}"
-            Duration.text = "Duration: ${currentLesson.duration}"
+            Duration.text = "Duration: ${currentLesson.duration} minutes"
             Description.text = currentLesson.description
 
             btnWatch.setOnClickListener {

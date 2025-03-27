@@ -1,7 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingVertical="52dp"
+    android:paddingHorizontal="18sp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,32 +13,34 @@
             android:id="@+id/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"/>
-
-        <TextView
-            android:id="@+id/Duration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
-
+            android:textSize="24sp"
+            android:layout_marginTop="24sp"/>
         <TextView
             android:id="@+id/Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"/>
-
+        <TextView
+            android:id="@+id/Duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
         <Button
             android:id="@+id/btnWatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="WATCH LESSON"/>
+            android:text="WATCH LESSON"
+            android:backgroundTint="#99BC85"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btnComplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="MARK AS COMPLETED"/>
+            android:text="MARK AS COMPLETED"
+
+            />
     </LinearLayout>
 </ScrollView>
