@@ -13,29 +13,27 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
     private lateinit var prefs: SharedPreferences
 
-    private lateinit var prefsHelper: PrefsHelper
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
-
         setupUI()
-
     }
+
+    override fun onResume() {
+        super.onResume()
+        updateProgressStats()
+    }
+    
     private fun setupUI() {
-
-
         val userName = prefs.getString("USER_NAME", "User") ?: "User"
         binding.welcomeText.text = "Welcome back, $userName!"
-        // Set initial progress
-        val prefsHelper = PrefsHelper(this)
 
-        updateProgressStats(prefsHelper.getCompletedCount())
+        updateProgressStats()
         val json = prefs.getString(KEY_COMPLETED_LESSONS, null)
-Log.d("***", "JSON: $json")
-//        Log.d("***", "Updating progress stats with completed: ${prefsHelper.getCompletedCount()}")
+            Log.d("***", "JSON: $json")
 
         binding.btnContinue.setOnClickListener {
             startActivity(Intent(this, LessonsListActivity::class.java))
@@ -48,10 +46,8 @@ Log.d("***", "JSON: $json")
         }
     }
 
-    private fun updateProgressStats(completed: Int) {
-        Log.d("&&&&&", "Updating progress stats with completed: $completed")
+    private fun updateProgressStats() {
         val completedIds = prefs.getStringSet("COMPLETED_LESSONS", mutableSetOf()) ?: mutableSetOf()
-
         val pending = PrefsHelper.TOTAL_LESSONS - completedIds.size
         val percentage = (completedIds.size * 100) / PrefsHelper.TOTAL_LESSONS
 

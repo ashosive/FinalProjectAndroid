@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         startActivity(intent)
-        finish() // Close MainActivity immediately
+        finish()
 
 }
 }

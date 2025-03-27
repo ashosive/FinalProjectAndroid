@@ -11,7 +11,6 @@ class LessonsAdapter(
     private val onClick: (Lesson) -> Unit
 ) : RecyclerView.Adapter<LessonsAdapter.LessonViewHolder>() {
 
-    // Add this function to update completed lessons
     fun updateCompletedLessons(newCompletedLessons: List<Boolean>) {
         completedLessons = newCompletedLessons
         notifyDataSetChanged()

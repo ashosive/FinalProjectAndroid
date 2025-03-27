@@ -27,7 +27,6 @@ class LessonsListActivity : AppCompatActivity() {
         setContentView(binding.root)
         prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE)
 
-        // Initialize with completed lessons (convert from SharedPreferences format)
         val completedLessons = getCompletedLessonsFromPrefs()
 
         adapter = LessonsAdapter(lessons, completedLessons) { lesson ->
@@ -45,7 +44,6 @@ class LessonsListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Refresh when returning from detail activity
         val updatedCompletedLessons = getCompletedLessonsFromPrefs()
         adapter.updateCompletedLessons(updatedCompletedLessons)
     }
